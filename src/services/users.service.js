@@ -46,11 +46,15 @@ const remove = (id) => {
 
   users.splice(index, 1);
 
-  return users;
+  return true;
 };
 
 const update = (name, id) => {
   const targetUser = users.find((user) => user.id === id);
+
+  if (!targetUser) {
+    return false;
+  }
 
   return Object.assign(targetUser, { name });
 };

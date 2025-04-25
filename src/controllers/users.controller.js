@@ -48,7 +48,7 @@ const remove = async (req, res) => {
 
 const update = async (req, res) => {
   if (!req.body.name) {
-    res.status(404).json({ error: 'Please enter name' });
+    res.status(400).json({ error: 'Please enter name' });
   }
 
   const { name } = req.body;
