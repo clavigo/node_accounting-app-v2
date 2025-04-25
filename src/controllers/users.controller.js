@@ -46,7 +46,7 @@ const remove = async (req, res) => {
   res.sendStatus(204);
 };
 
-const update = (req, res) => {
+const update = async (req, res) => {
   if (!req.body.name) {
     res.status(404).json({ error: 'Please enter name' });
   }
@@ -54,7 +54,7 @@ const update = (req, res) => {
   const { name } = req.body;
   const targetId = +req.params.id;
 
-  const targetUser = userService.update(name, targetId);
+  const targetUser = await userService.update(name, targetId);
 
   if (!targetUser) {
     return res.status(404).send({ error: 'User not found' });

@@ -110,12 +110,12 @@ const remove = (id) => {
   const index = expenses.findIndex((expense) => expense.id === id);
 
   if (index === -1) {
-    return index;
+    return false;
   }
 
   expenses.splice(index, 1);
 
-  return expenses;
+  return true;
 };
 
 const update = (id, expense) => {

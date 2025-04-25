@@ -12,14 +12,14 @@ const getAll = async (req, res) => {
 
   const queries = req.query;
 
-  const allExpenses = expensesService.getAll(queries);
+  const allExpenses = await expensesService.getAll(queries);
 
   return res.status(200).send(allExpenses);
 };
 
 const create = async (req, res) => {
   const body = req.body;
-  const newExpense = expensesService.create(body);
+  const newExpense = await expensesService.create(body);
 
   if (!newExpense) {
     return res.status(400).send('Bad request');
@@ -45,7 +45,7 @@ const remove = async (req, res) => {
   const targetId = +req.params.id;
   const index = await expensesService.remove(targetId);
 
-  if (index === -1) {
+  if (index === false) {
     res.status(404).send('Not Found');
 
     return;
